@@ -38,5 +38,5 @@ to run the app using kubernetes APIs (commands):
 ## To Do:
 1. setup on actual kubernetes cluster
 2. setup ingress services
-3. setup a cloud storeage as a volume
+3. setup a cloud storage as a volume
 4. setup deployment pipelines to push to kubernetes cluster
