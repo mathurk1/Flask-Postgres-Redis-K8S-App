@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app
+  labels:
+    app: flask-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      containers:
+      - name: flask-app
+        image: {{ azure-registry-name }}.azurecr.io/flask-app:latest
+        # resources:
+        #   limits:
+        #     memory: "12G"
+        #     cpu: "2000m"
+        ports:
+        # this should be the same as 
+        # service.target_port
+        - containerPort: 80
+      imagePullSecrets:
+        - name: acrregistrykey
+      

@@ -1,0 +1,2 @@
+config:
+  postgres_admin_name: "postgres"

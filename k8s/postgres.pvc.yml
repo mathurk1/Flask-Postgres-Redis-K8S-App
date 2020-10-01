@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresdbclaim
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: local-storage
+  volumeName: postgrespv
+  resources:
+    requests:
+      storage: 2Gi
+  

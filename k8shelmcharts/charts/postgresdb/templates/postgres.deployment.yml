@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  labels:
+    app: postgres
+    tier: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres-container
+        image: postgres:10
+        volumeMounts:
+        - mountPath: /docker-entrypoint-initdb.d/init.sql
+          name: postgres-init
+        - mountPath: /var/lib/postgresql/data
+          name: postgredb
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: password
+        resources:
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 5432
+      volumes:
+      - name: postgres-init
+        hostPath:
+          # directory location on host
+          path: {{ .Values.init_script_pth }}
+          type: File
+      #mount this path for db backup
+      - name: postgredb
+        persistentVolumeClaim:
+          claimName: postgresdbclaim

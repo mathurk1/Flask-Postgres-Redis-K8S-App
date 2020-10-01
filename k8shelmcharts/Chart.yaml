@@ -1,0 +1,7 @@
+
+apiVersion: v2
+name: flask-k8s-app
+version: 0.1.0
+description: minimal chart using flask, redis and postgres to explore helm
+appVersion: 0.1.0
+type: application

@@ -1,0 +1,32 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgrespv
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: local-storage
+  local:
+    path: {{ complete/path/to }} /postgresdbvolume
+  # node affinity is required when using local storage
+  # the below config is applicable for kubernetes running
+  # locally on docker
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          # name of the node that should access the volume
+          # can be found out using `kubectl get nodes`
+          - docker-desktop

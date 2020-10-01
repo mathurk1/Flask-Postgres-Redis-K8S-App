@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  # use this as the hostname to connect to redis service
+  name: flask-app
+spec:
+  type: NodePort
+  selector:
+    app: flask-app
+  ports:
+    - protocol: TCP
+      # port at which the service is exposed
+      # all pods can call this service by
+      # calling the metadata.name at this port 
+      port: 80
+      # the port at which the service will send 
+      # requests to. Containers in the Pods need 
+      # to be listening at this port
+      targetPort: 80
+      # port on the node which is open for requests
+      # this is the node the URL request should hit
+      # for example: localhost:30001
+      nodePort: 30001
