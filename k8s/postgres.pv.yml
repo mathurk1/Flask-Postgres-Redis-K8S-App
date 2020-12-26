@@ -1,28 +1,6 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: postgresdb
-spec:
-  capacity:
-    storage: 5Gi
-  azureFile:
-    secretName: azure-secret
-    shareName: k8sflaskpostgresdb
-    secretNamespace: null
-  accessModes:
-    - ReadWriteMany
-  storageClassName: azurefile
-  mountOptions:
-  - dir_mode=0777
-  - file_mode=0777
-  - uid=1000
-  - gid=1000
-  - mfsymlinks
-  - nobrl
----
-kind: PersistentVolume
-apiVersion: v1
-metadata:
   name: postgresinit
 spec:
   capacity:

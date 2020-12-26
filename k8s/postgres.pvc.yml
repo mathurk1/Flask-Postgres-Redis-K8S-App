@@ -4,9 +4,8 @@ metadata:
   name: postgresdbclaim
 spec:
   accessModes:
-    - ReadWriteMany
-  storageClassName: azurefile
-  volumeName: postgresdb
+  - ReadWriteOnce
+  storageClassName: managed-premium
   resources:
     requests:
       storage: 2Gi
