@@ -7,7 +7,7 @@ spec:
     storage: 1Gi
   azureFile:
     secretName: azure-secret
-    shareName: k8sflaskpostgresinit/db_create.sql
+    shareName: k8sflaskpostgresinit
     secretNamespace: null
   accessModes:
     - ReadOnlyMany
