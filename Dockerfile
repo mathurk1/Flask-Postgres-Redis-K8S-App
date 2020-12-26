@@ -14,7 +14,7 @@ RUN apk update && apk add --no-cache\
 COPY ./requirements.txt ./
 RUN pip install -r requirements.txt
 
-COPY ./.env ./
+#COPY ./.env ./
 COPY ./src ./src
 COPY ./uwsgi-app.ini ./
 
