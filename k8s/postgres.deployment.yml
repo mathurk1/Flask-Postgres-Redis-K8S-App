@@ -23,6 +23,7 @@ spec:
         #   name: postgres-init
         - mountPath: /var/lib/postgresql/data
           name: postgredb
+          subPath: db_data
         env:
         - name: POSTGRES_USER
           valueFrom:
