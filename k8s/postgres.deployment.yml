@@ -19,8 +19,8 @@ spec:
       - name: postgres-container
         image: postgres:10
         volumeMounts:
-        #- mountPath: /docker-entrypoint-initdb.d/init.sql
-        #  name: postgres-init
+        - mountPath: /docker-entrypoint-initdb.d/init.sql
+          name: postgres-init
         - mountPath: /var/lib/postgresql/data
           name: postgredb
         env:
@@ -41,11 +41,10 @@ spec:
         ports:
         - containerPort: 5432
       volumes:
-      #- name: postgres-init
-      #  hostPath:
-      #    # directory location on host
-      #    path: {{ complete/path/to }} src/database/db_create.sql
-      #    type: File
+      #mount this path for init script claim
+      - name: postgres-init
+        persistentVolumeClaim:
+            claimName: postgresinitclaim
       #mount this path for db backup
       - name: postgredb
         persistentVolumeClaim:

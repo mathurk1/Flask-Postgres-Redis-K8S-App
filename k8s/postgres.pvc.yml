@@ -17,7 +17,7 @@ metadata:
   name: postgresinitclaim
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   storageClassName: azurefile
   volumeName: postgresinit
   resources:

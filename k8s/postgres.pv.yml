@@ -7,7 +7,7 @@ spec:
     storage: 5Gi
   azureFile:
     secretName: azure-secret
-    shareName: k8spostgresbckup
+    shareName: k8sflaskpostgresdb
     secretNamespace: null
   accessModes:
     - ReadWriteMany
@@ -22,7 +22,7 @@ spec:
     storage: 1Gi
   azureFile:
     secretName: azure-secret
-    shareName: k8spostgresinit
+    shareName: k8sflaskpostgresinit/db_create.sql
     secretNamespace: null
   accessModes:
     - ReadOnlyMany
