@@ -5,9 +5,9 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: local-storage
-  volumeName: postgrespv
+  storageClassName: azurefile
+  volumeName: az-storage
   resources:
     requests:
-      storage: 2Gi
+      storage: 1Gi
   
