@@ -6,8 +6,8 @@ spec:
   accessModes:
     - ReadWriteMany
   storageClassName: azurefile
-  volumeName: az-storage
+  volumeName: postgrespv
   resources:
     requests:
-      storage: 1Gi
+      storage: 2Gi
   
