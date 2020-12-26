@@ -6,8 +6,21 @@ spec:
   accessModes:
     - ReadWriteMany
   storageClassName: azurefile
-  volumeName: postgrespv
+  volumeName: postgresdb
   resources:
     requests:
       storage: 2Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresinitclaim
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: azurefile
+  volumeName: postgresinit
+  resources:
+    requests:
+      storage: 1Gi
   

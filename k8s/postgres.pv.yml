@@ -1,0 +1,29 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: postgresdb
+spec:
+  capacity:
+    storage: 5Gi
+  azureFile:
+    secretName: azure-secret
+    shareName: k8spostgresbckup
+    secretNamespace: null
+  accessModes:
+    - ReadWriteMany
+  storageClassName: azurefile
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: postgresinit
+spec:
+  capacity:
+    storage: 1Gi
+  azureFile:
+    secretName: azure-secret
+    shareName: k8spostgresinit
+    secretNamespace: null
+  accessModes:
+    - ReadOnlyMany
+  storageClassName: azurefile
