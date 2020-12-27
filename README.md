@@ -35,8 +35,24 @@ to run the app using kubernetes APIs (commands):
     ```
 3. run command from the root (`k8shelmcharts` folder) of the helm charts directory `helm install flaskapp . -f secretvalues.yml`
 
+
+## Run using Kubernetes on AKS
+
+1. create a Azure file share named `k8sflaskpostgresinit` and upload `src/database/db_create.sql`
+2. update the acr registry name in `flask.deployment.yml` file
+3. create secrets:
+    ```
+    kubectl create secret docker-registry acrregistrykey --docker-server=https://{acr-reg-name}.azurecr.io --docker-username=username --docker-password=password
+
+
+    kubectl create secret generic postgres-secrets --from-literal=password=postgres-admin-password
+
+    Kubectl create secret generic azure-secret --from-literal=azurestorageaccountname=azure-storeage-acct-name --from-literal=azurestorageaccountkey=azure-storeage-acct-key
+    ```
+4. clone repo in AKS cluster. Run using `kubectl apply -f k8s/`
+
 ## To Do:
-1. setup on actual kubernetes cluster
-2. setup ingress services
-3. setup a cloud storeage as a volume
-4. setup deployment pipelines to push to kubernetes cluster
+1. ~~setup on actual kubernetes cluster~~
+2. ~~setup ingress services~~ (created as external load balancer)
+3. ~~setup a cloud storeage as a volume~~
+
