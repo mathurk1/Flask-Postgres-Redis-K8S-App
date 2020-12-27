@@ -4,7 +4,7 @@ metadata:
   # use this as the hostname to connect to redis service
   name: flask-app
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: flask-app
   ports:

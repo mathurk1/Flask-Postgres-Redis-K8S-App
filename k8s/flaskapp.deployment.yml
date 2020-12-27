@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: kmk8sacr.azurecr.io/flask-app:latest
+        image: {{arc registry name}}.azurecr.io/flask-app:latest
+        imagePullPolicy: Always
         # resources:
         #   limits:
         #     memory: "12G"
